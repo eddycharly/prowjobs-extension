@@ -3,7 +3,7 @@ import { Spinner, Table, FormattedDate, RunDropdown } from '@tektoncd/dashboard-
 import { Link } from 'react-router-dom';
 import { urls } from '@tektoncd/dashboard-utils';
 import { IntlProvider } from "react-intl";
-import { getProwjobs } from './api/index';
+import { getProwjobs, deleteProwjob } from './api/index';
 import {
   CheckmarkFilled20 as CheckmarkFilled,
   CloseFilled20 as CloseFilled,
@@ -11,6 +11,8 @@ import {
 } from '@carbon/icons-react';
 
 import './status.scss'
+
+const prowUrl = 'https://you_prow_url_here';
 
 class WebhooksApp extends Component {
   state = {
@@ -32,15 +34,16 @@ class WebhooksApp extends Component {
   };
 
   delete = prowjob => {
-    console.log(prowjob);
+    deleteProwjob(prowjob).then(loadProwjobs);
   };
 
   viewYaml = prowjob => {
-    console.log(prowjob);
+    console.log("TODO");
   };
 
   viewOnProw = prowjob => {
-    console.log(prowjob);
+    const win = window.open(`${prowUrl}/?repo=${prowjob.spec.refs.org}/${prowjob.spec.refs.repo}`, '_blank');
+    win.focus();
   };
 
   render() {

@@ -3,7 +3,6 @@ import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
-import image from '@rollup/plugin-image';
 import externalGlobals from 'rollup-plugin-external-globals';
 import svgr from '@svgr/rollup';
 
@@ -38,7 +37,6 @@ export default {
       }
     }),
     postcss(),
-    // image(),
     externalGlobals({
       'carbon-components-react': 'CarbonComponentsReact',
       'react': 'React',

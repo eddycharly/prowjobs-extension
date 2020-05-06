@@ -15,7 +15,6 @@ spec:
       labels:
         app: prowjobs-extension
     spec:
-      serviceAccountName: prowjobs-extension
       containers:
         - name: prowjobs-extension
           image: github.com/eddycharly/prowjobs-extension/cmd/prowjobs-extension

@@ -1,0 +1,5 @@
+dist
+cmd/prowjobs-extension/kodata
+node-modules
+node-*
+vendor

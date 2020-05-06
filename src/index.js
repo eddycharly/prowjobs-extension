@@ -71,7 +71,7 @@ class WebhooksApp extends Component {
       if (!status || (status === 'pending')) {
         return <Time className="status-icon" />;
       }
-    
+
       if (status === 'running') {
         return <Spinner className="status-icon" />;
       }
@@ -82,7 +82,7 @@ class WebhooksApp extends Component {
       } else if (status === 'failure') {
         Icon = CloseFilled;
       }
-    
+
       return Icon ? <Icon className="status-icon" /> : null;
     };
 

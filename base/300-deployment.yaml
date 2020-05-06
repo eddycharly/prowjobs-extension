@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowjobs-extension
+  namespace: tekton-pipelines
+  labels:
+    app: prowjobs-extension
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowjobs-extension
+  template:
+    metadata:
+      labels:
+        app: prowjobs-extension
+    spec:
+      serviceAccountName: prowjobs-extension
+      containers:
+        - name: prowjobs-extension
+          image: github.com/eddycharly/prowjobs-extension/cmd/prowjobs-extension
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+          - name: WEB_RESOURCES_DIR
+            value: web

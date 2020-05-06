@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prowjobs-extension
+  namespace: tekton-pipelines
+  labels:
+    app: prowjobs-extension
+    tekton-dashboard-extension: "true"
+  annotations:
+    tekton-dashboard-display-name: Prowjobs
+    tekton-dashboard-endpoints: web
+    tekton-dashboard-bundle-location: web/extension.0df26c99.js
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: prowjobs-extension

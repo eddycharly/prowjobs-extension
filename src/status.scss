@@ -1,0 +1,69 @@
+@import '~carbon-components/scss/globals/scss/vars';
+
+$not-run: #535e67;
+
+$waiting-bg: transparent;
+$waiting-bg-hover: #e5e8eb;
+$waiting-fg: inherit;
+
+$running: $brand-01;
+$running-bg: $brand-01;
+$running-bg-hover: #5485c4;
+$running-fg: white;
+
+$success: #5d8726;
+$success-bg: #5d8726;
+$success-bg-hover: #65932a;
+$success-fg: white;
+
+$failed: #ad1625;
+$failed-bg: #ad1625;
+$failed-bg-hover: #cb1a2c;
+$failed-fg: white;
+
+$unknown: #535e67;
+
+.definition .status {
+  display: flex;
+
+  .status-icon {
+    margin-right: 0.5em;
+    vertical-align: sub;
+    flex-shrink: 0;
+  }
+
+  &:not([data-status]) {
+    .status-icon {
+      fill: $unknown;
+    }
+  }
+
+  &[data-status='success'] {
+    .status-icon {
+      fill: $success;
+    }
+  }
+
+  &[data-status='failure'] {
+    .status-icon {
+      fill: $failed;
+    }
+
+    // &[data-reason='PipelineRunCancelled'],
+    // &[data-reason='TaskRunCancelled'] {
+    //   .status-icon {
+    //     fill: $ui-04;
+    //   }
+    // }
+  }
+
+  &[data-status='Unknown'][data-reason='running'] {
+    .status-icon {
+      fill: $running;
+    }
+  }
+}
+
+.bx--overflow-menu--flip.bx--overflow-menu-options::after{
+  display: none;
+}

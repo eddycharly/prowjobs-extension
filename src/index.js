@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { Spinner, Table, FormattedDate, RunDropdown } from '@tektoncd/dashboard-components';
+import { injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { urls } from '@tektoncd/dashboard-utils';
-import { IntlProvider } from "react-intl";
-import { getProwjobs, deleteProwjob } from './api/index';
 import {
   CheckmarkFilled20 as CheckmarkFilled,
   CloseFilled20 as CloseFilled,
   Time20 as Time
 } from '@carbon/icons-react';
+import { Spinner, Table, FormattedDate, RunDropdown } from '@tektoncd/dashboard-components';
+import { urls } from '@tektoncd/dashboard-utils';
+import { getProwjobs, deleteProwjob } from './api/index';
 
 import './status.scss'
 
 const prowUrl = 'https://you_prow_url_here';
 
-class WebhooksApp extends Component {
+class ProwjobsExtension extends Component {
   state = {
     prowjobs: null,
     loading: false
@@ -114,7 +114,7 @@ class WebhooksApp extends Component {
         rows.push({
           id: prowjob.metadata.name,
           status: getProwjobStatus(prowjob),
-          name:<Link to={createPipelineRunURL(prowjob)} title={prowjob.metadata.name}>{prowjob.metadata.name}</Link>,
+          name: <Link to={createPipelineRunURL(prowjob)} title={prowjob.metadata.name}>{prowjob.metadata.name}</Link>,
           type: prowjob.spec.type,
           repo: `${prowjob.spec.refs.org}/${prowjob.spec.refs.repo}`,
           agent: prowjob.spec.agent,
@@ -125,7 +125,7 @@ class WebhooksApp extends Component {
     }
 
     return (
-      <IntlProvider locale="en">
+      <>
         <h1>Prowjobs</h1>
         <br/>
         <Table
@@ -135,9 +135,9 @@ class WebhooksApp extends Component {
           emptyTextAllNamespaces='No prow jobs'
           emptyTextSelectedNamespace='No prow jobs'
         />
-      </IntlProvider>
+      </>
     );
   };
 }
 
-export default WebhooksApp;
+export default injectIntl(ProwjobsExtension);

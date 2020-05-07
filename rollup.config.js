@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import externalGlobals from 'rollup-plugin-external-globals';
 import svgr from '@svgr/rollup';
+import { terser } from "rollup-plugin-terser";
 
 export default {
   input: 'src/index.js',
@@ -15,6 +16,7 @@ export default {
   },
   plugins: [
     resolve({
+      browser: true,
       customResolveOptions: {
         moduleDirectory: 'node_modules'
       }
@@ -41,13 +43,17 @@ export default {
       'carbon-components-react': 'CarbonComponentsReact',
       'react': 'React',
       'react-dom': 'ReactDOM',
+      'react-intl': 'ReactIntl',
       'react-redux': 'ReactRedux',
       'react-router-dom': 'ReactRouterDOM',
-      'stream': 'Stream'
+      '@tektoncd/dashboard-components': 'DashboardComponents',
+      '@tektoncd/dashboard-utils': 'DashboardUtils'
+
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify( 'production' )
     }),
     svgr(),
+    terser()
   ]
 };

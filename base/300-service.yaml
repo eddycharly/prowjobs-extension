@@ -9,7 +9,7 @@ metadata:
   annotations:
     tekton-dashboard-display-name: Prowjobs
     tekton-dashboard-endpoints: web
-    tekton-dashboard-bundle-location: web/extension.6f2ba7d1.js
+    tekton-dashboard-bundle-location: web/extension.ce5fe8e5.js
 spec:
   type: NodePort
   ports:
